@@ -1,0 +1,38 @@
+Explicação dos métodos utilizados
+
+Classe JogoDaVelha
+
+main(): é o método principal do programa. Ele inicia o jogo, cria os jogadores e o tabuleiro e controla a vez de cada jogador.
+mostrarTabuleiro(): foi utilizado para mostrar na tela como está o tabuleiro durante a partida.
+marcarJogada(): serve para colocar o símbolo (X ou O) no local escolhido pelo jogador.
+verificarGanhador(): verifica se o jogador conseguiu formar uma sequência de três símbolos iguais.
+tabuleiroCheio(): verifica se todas as posições foram preenchidas. Se estiver cheio e ninguém ganhou, o jogo termina em empate.
+getJogadorDaVez(): serve para saber qual jogador deve jogar naquele momento.
+setJogadorDaVez(): serve para trocar a vez de um jogador para o outro.
+
+Classe Jogador
+
+Construtor Jogador(): é usado para criar cada jogador já com seu número, nome e símbolo.
+getNome(): pega o nome do jogador.
+getSimbolo(): pega o símbolo que o jogador usa.
+getNumero(): pega o número do jogador.
+setNome(), setSimbolo() e setNumero(): permitem alterar essas informações quando necessário.
+jogar(): foi criado para representar a ação de jogar, mas neste programa a lógica da jogada está sendo feita pela classe JogoDaVelha.
+
+Classe Tabuleiro
+
+Construtor Tabuleiro(): cria o tabuleiro e define as informações iniciais, como o jogador que começa e o placar.
+isHouveGanhadorUltRodada(): verifica se houve um ganhador na rodada.
+setHouveGanhadorUltRodada(): altera essa informação.
+getNotaJ1() e getNotaJ2(): mostram a pontuação dos jogadores.
+setNotaJ1() e setNotaJ2(): permitem alterar a pontuação.
+getRegras(): pega as regras do jogo.
+setRegras(): permite alterar as regras.
+mostrarTabuleiro(): mostra o tabuleiro atualizado para os jogadores.
+marcarJogada(): coloca o símbolo escolhido na posição indicada e também verifica se a posição está livre.
+verificarGanhador(): analisa linhas, colunas e diagonais para descobrir se alguém ganhou.
+tabuleiroCheio(): verifica se não existem mais espaços disponíveis no tabuleiro.
+
+Resumindo
+
+Os métodos foram separados para deixar o programa mais organizado. Cada método tem uma função específica: alguns cuidam dos jogadores, outros do tabuleiro e outros controlam as regras do jogo. Assim, fica mais fácil entender, corrigir e modificar o código.
