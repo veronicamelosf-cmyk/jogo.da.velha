@@ -8,10 +8,13 @@ package jogodavelha;
  *
  * @author veronica62924506
  */
+
 public class Tabuleiro {
 
     private int notaJ1;
     private int notaJ2;
+    private int empates;
+
     private String regras;
     private boolean houveGanhadorUltRodada;
     private int jogadorDaVez;
@@ -27,20 +30,12 @@ public class Tabuleiro {
     private char c3 = ' ';
 
     public Tabuleiro(String regras) {
-
         this.regras = regras;
         this.notaJ1 = 0;
         this.notaJ2 = 0;
+        this.empates = 0;
         this.houveGanhadorUltRodada = false;
         this.jogadorDaVez = 1;
-    }
-
-    public boolean isHouveGanhadorUltRodada() {
-        return houveGanhadorUltRodada;
-    }
-
-    public void setHouveGanhadorUltRodada(boolean houveGanhadorUltRodada) {
-        this.houveGanhadorUltRodada = houveGanhadorUltRodada;
     }
 
     public int getNotaJ1() {
@@ -59,12 +54,25 @@ public class Tabuleiro {
         this.notaJ2 = notaJ2;
     }
 
+    public int getEmpates() {
+        return empates;
+    }
+
     public String getRegras() {
         return regras;
     }
 
     public void setRegras(String regras) {
         this.regras = regras;
+    }
+
+    public boolean isHouveGanhadorUltRodada() {
+        return houveGanhadorUltRodada;
+    }
+
+    public void setHouveGanhadorUltRodada(
+            boolean houveGanhadorUltRodada) {
+        this.houveGanhadorUltRodada = houveGanhadorUltRodada;
     }
 
     public int getJogadorDaVez() {
@@ -81,17 +89,17 @@ public class Tabuleiro {
                             
                             A       B       C
                                 |       |
-                      1     %C  |   %C  |   %C
+                      1     %C   |   %C   |   %C
                                 |       |
                          -------+-------+-------
                                 |       |
-                      2     %C  |   %C  |   %C
+                      2     %C   |   %C   |   %C
                                 |       |
                          -------+-------+-------
                                 |       |
-                      3     %C  |   %C  |   %C
+                      3     %C   |   %C   |   %C
                                 |       |
-                            
+
                             """,
                 a1, b1, c1,
                 a2, b2, c2,
@@ -166,52 +174,48 @@ public class Tabuleiro {
                 break;
 
             default:
-                System.out.println("Local inválido! Use A1 até C3.");
+                System.out.println(
+                        "Posicao invalida! Escolha de A1 ate C3.");
                 return false;
         }
 
-        System.out.println("Essa posição já está ocupada!");
+        System.out.println("Essa posicao ja esta ocupada!");
         return false;
     }
 
     public boolean verificarGanhador(char simbolo) {
 
-        // Linha 1
+        // Verifica as linhas
         if (a1 == simbolo && b1 == simbolo && c1 == simbolo) {
             return true;
         }
 
-        // Linha 2
         if (a2 == simbolo && b2 == simbolo && c2 == simbolo) {
             return true;
         }
 
-        // Linha 3
         if (a3 == simbolo && b3 == simbolo && c3 == simbolo) {
             return true;
         }
 
-        // Coluna A
+        // Verifica as colunas
         if (a1 == simbolo && a2 == simbolo && a3 == simbolo) {
             return true;
         }
 
-        // Coluna B
         if (b1 == simbolo && b2 == simbolo && b3 == simbolo) {
             return true;
         }
 
-        // Coluna C
         if (c1 == simbolo && c2 == simbolo && c3 == simbolo) {
             return true;
         }
 
-        // Diagonal principal
+        // Verifica as diagonais
         if (a1 == simbolo && b2 == simbolo && c3 == simbolo) {
             return true;
         }
 
-        // Diagonal secundária
         if (a3 == simbolo && b2 == simbolo && c1 == simbolo) {
             return true;
         }
@@ -221,13 +225,50 @@ public class Tabuleiro {
 
     public boolean tabuleiroCheio() {
 
-        if (a1 == ' ' || a2 == ' ' || a3 == ' '
-                || b1 == ' ' || b2 == ' ' || b3 == ' '
-                || c1 == ' ' || c2 == ' ' || c3 == ' ') {
+        return a1 != ' ' && a2 != ' ' && a3 != ' '
+                && b1 != ' ' && b2 != ' ' && b3 != ' '
+                && c1 != ' ' && c2 != ' ' && c3 != ' ';
+    }
 
-            return false;
+    public void registrarVitoria(int jogador) {
+
+        houveGanhadorUltRodada = true;
+
+        if (jogador == 1) {
+            notaJ1++;
+        } else if (jogador == 2) {
+            notaJ2++;
         }
+    }
 
-        return true;
+    public void registrarEmpate() {
+        empates++;
+        houveGanhadorUltRodada = false;
+    }
+
+    public void mostrarPlacar() {
+
+        System.out.println("\n===== PLACAR =====");
+        System.out.println("Veronica (X): " + notaJ1 + " vitoria(s)");
+        System.out.println("Jonathan (O): " + notaJ2 + " vitoria(s)");
+        System.out.println("Empates: " + empates);
+        System.out.println("==================");
+    }
+
+    public void reiniciarTabuleiro() {
+
+        a1 = ' ';
+        a2 = ' ';
+        a3 = ' ';
+        b1 = ' ';
+        b2 = ' ';
+        b3 = ' ';
+        c1 = ' ';
+        c2 = ' ';
+        c3 = ' ';
+
+        jogadorDaVez = 1;
+        houveGanhadorUltRodada = false;
     }
 }
+

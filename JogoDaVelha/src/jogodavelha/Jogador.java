@@ -8,6 +8,7 @@ package jogodavelha;
  *
  * @author veronica62924506
  */
+
 public class Jogador {
 
     private int numero;
@@ -45,6 +46,6 @@ public class Jogador {
     }
 
     public void jogar() {
-
+        // A jogada e controlada pela classe JogoDaVelha.
     }
 }
